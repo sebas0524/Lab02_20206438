@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content">
+    <main>
+        <!-- Contenido -->
+        <div class="page-header text-center">
+            <h1>Lista de Jugadores</h1>
+        </div>
+        <div class="container-fluid">
+
+            <a class="btn btn-primary mt-4 mb-4" th:href="@{/jugador/nuevo}">Nueva Jugador</a>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Posición</th>
+                    <th>Club</th>
+                    <th>Selección</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="jugador,info: ${lista}">
+                    <td th:text="${info.index + 1}"></td>
+                    <td  th:text="${jugador.nombre}">
+                    <td th:text="${jugador.edad}">
+                    <td th:text="${jugador.posicion}">
+                    <td th:text="${jugador.club}">
+                    <td th:text="${jugador.idseleccion}">
+                    <td><a class="btn btn-danger" th:href="@{'/jugador/borrar?id=' + ${jugador.idjugador}}">Borrar</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /Contenido -->
+    </main>
+</div>
+</body>
+</html>
