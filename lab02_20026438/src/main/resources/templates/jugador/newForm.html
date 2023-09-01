@@ -29,6 +29,12 @@
                     <label for="club">Club</label>
                     <input name="club" type="text" class="form-control" id="club">
                 </div>
+                <div class="mb-3">
+                    <label for="seleccion">Selecicon Nacional</label>
+                    <select class="form-select" id="seleccion">
+                        <option th:each="seleccion : ${lista}" th:text="${seleccion.nombre}" th:value="${seleccion.idseleccion}"></option>
+                    </select>
+                </div>
 
                 <a th:href="@{/jugador}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Registrar</button>

@@ -5,10 +5,7 @@ import com.example.lab02_20026438.repositorio.JugadorRepository;
 import com.example.lab02_20026438.repositorio.SeleccionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -22,7 +19,11 @@ public class JugadorController {
         this.seleccionRepository=seleccionRepository;
     }
 
-
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public String paginaPrincipal(){
+        return "Agradecido con el de arriba";
+    }
     @GetMapping("/jugador")
     public String listaJugadores(Model model){
         model.addAttribute("lista",jugadorRepository.findAll());
@@ -35,7 +36,8 @@ public class JugadorController {
 
     }
     @GetMapping("/jugador/nuevo")
-    public String nuevoJugador(){
+    public String nuevoJugador(Model model){
+        model.addAttribute("lista",seleccionRepository.findAll());
         return "jugador/newForm";
     }
     @GetMapping("/jugador/borrar")
