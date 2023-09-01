@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div id="content">
+    <main>
+        <!-- Contenido -->
+        <div class="page-header text-center">
+            <h1>Lista de Jugadores</h1>
+        </div>
+        <div class="container-fluid">
+
+            <a class="btn btn-primary mt-4 mb-4" th:href="@{/estadio/nuevo}">Nueva Estadio</a>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Provincia</th>
+                    <th>Club</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="estadio,info: ${lista}">
+                    <td th:text="${info.index + 1}"></td>
+                    <td  th:text="${estadio.nombre}">
+                    <td th:text="${estadio.provincia}">
+
+                    <td><a class="btn btn-danger" th:href="@{'/estadio/borrar?id=' + ${estadio.idestadio}}">Borrar</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /Contenido -->
+    </main>
+</div>
 
 </body>
 </html>

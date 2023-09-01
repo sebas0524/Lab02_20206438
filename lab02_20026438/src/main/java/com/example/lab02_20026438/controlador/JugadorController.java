@@ -2,6 +2,7 @@ package com.example.lab02_20026438.controlador;
 
 import com.example.lab02_20026438.entidad.Jugador;
 import com.example.lab02_20026438.repositorio.JugadorRepository;
+import com.example.lab02_20026438.repositorio.SeleccionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,10 @@ import java.util.Optional;
 public class JugadorController {
 
     final JugadorRepository jugadorRepository;
-
-    public JugadorController(JugadorRepository jugadorRepository){
+    final SeleccionRepository seleccionRepository;
+    public JugadorController(JugadorRepository jugadorRepository,SeleccionRepository seleccionRepository){
         this.jugadorRepository=jugadorRepository;
+        this.seleccionRepository=seleccionRepository;
     }
 
 
@@ -26,22 +28,22 @@ public class JugadorController {
         model.addAttribute("lista",jugadorRepository.findAll());
         return "jugador/list";
     }
-    @PostMapping("/guardar")
+    @PostMapping("/jugador/guardar")
     public String guardarJugador(Jugador jugador) {
         jugadorRepository.save(jugador);
-        return "redirect:/jugador/list";
+        return "redirect:/jugador";
 
     }
     @GetMapping("/jugador/nuevo")
     public String nuevoJugador(){
         return "jugador/newForm";
     }
-    @GetMapping("/borrar")
+    @GetMapping("/jugador/borrar")
     public String borrarJugador(@RequestParam("id") int id){
         Optional<Jugador> optional = jugadorRepository.findById(id);
         if(optional.isPresent()){
             jugadorRepository.deleteById(id);
         }
-        return "redirect:/jugador/list";
+        return "redirect:/jugador";
     }
 }

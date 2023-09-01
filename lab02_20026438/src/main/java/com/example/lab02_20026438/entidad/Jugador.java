@@ -15,13 +15,13 @@ public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idjugador",nullable = false)
+    @Column(name="idJugador",nullable = false)
     private Integer idjugador;
     @Column(name="edad",nullable = false)
     private int edad;
     @Column(name="posicion",nullable = false)
     private String posicion;
-    @Column(name="snidseleccion",nullable = false)
+    @Column(name="sn_idSeleccion",nullable = false)
     private int idseleccion;
     @Column(name="club",nullable = false)
     private String club;
